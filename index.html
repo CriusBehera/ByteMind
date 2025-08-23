@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ByteMind Club</title>
   <style>
     html {
@@ -237,6 +238,66 @@
   animation: blinkGlow 1.2s infinite;
 }
 
+    @media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .controls input[type="text"],
+  .controls button,
+  .controls a {
+    width: 100%;
+    max-width: 300px;
+    font-size: 0.95em;
+  }
+
+  .session-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .session-card img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+
+  .session-info h3 {
+    font-size: 1.2em;
+  }
+
+  .session-info p {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .controls {
+    gap: 10px;
+  }
+
+  .session-card {
+    padding: 10px;
+  }
+
+  .session-info h3 {
+    font-size: 1em;
+  }
+
+  .session-info p {
+    font-size: 0.9em;
+  }
+}
 
   </style>
 </head>
@@ -326,4 +387,5 @@
 </body>
 
 </html>
+
 
