@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ByteMind Club</title>
+  <style>
+    html {
+  scroll-behavior: smooth;
+        }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
+      animation: gradientShift 15s ease infinite;
+      scroll-behavior: smooth;
+    }
+
+    /* Nav Bar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-bottom: 2px solid #00f7ff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    @keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00f7ff, 0 0 25px #00f7ff;
+  }
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  border-radius: 12px;
+  animation: pulseGlow 2s infinite;
+  transition: transform 0.3s ease;
+}
+    .logo-left {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #00f7ff;
+      box-shadow: 0 0 15px #00f7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+    .logo-right {
+      width: 160px;
+      height: 50px;
+      border-radius: 10px;
+      background-color: #ff00c8;
+      box-shadow: 0 0 15px #ff00c8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+.center-logo-img {
+  height: 80px;
+  width: auto;
+  border-radius: 16px;
+  filter: drop-shadow(0 0 10px #00f7ff);
+  transition: transform 0.3s ease;
+}
+
+.center-logo-img:hover {
+  transform: scale(1.05);
+}
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #00f7ff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #00f7ff;
+      color: #0f172a;
+    }
+
+    /* Medium Logo */
+    .medium-logo {
+      margin: 40px auto 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #00f7ff;
+      box-shadow: 0 0 20px #00f7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #facc15;
+      text-shadow: 0 0 10px #facc15;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+      color: #e0e0e0;
+    }
+
+    .highlight {
+      color: #ff00c8;
+      font-weight: bold;
+      text-shadow: 0 0 8px #ff00c8;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 700px;
+      margin: auto;
+      margin-top: 30px;
+    }
+
+    .feature-item {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffae;
+      font-size: 1.1em;
+      color: #00ffae;
+    }
+
+    .session-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 0 10px #00ffae;
+    }
+
+    .session-card h3 {
+      color: #00ffae;
+      margin-bottom: 10px;
+    }
+
+    .email {
+      color: #38bdf8;
+      font-weight: bold;
+      text-shadow: 0 0 5px #38bdf8;
+    }
+
+    .session-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #00f7ff;
+      color: #0f172a;
+      font-weight: bold;
+      font-size: 1.1em;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #00f7ff;
+      transition: transform 0.2s ease;
+      margin-top: 30px;
+    }
+
+    .session-button:hover {
+      transform: scale(1.05);
+    }
+
+
+    @keyframes blinkGlow {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #ff0033, 0 0 20px #ff0033;
+  }
+  50% {
+    opacity: 0.6;
+    text-shadow: 0 0 5px #ff0033;
+  }
+}
+
+.neon-warning {
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ff0033;
+  background-color: rgba(255, 0, 51, 0.1);
+  border: 2px solid #ff0033;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff0033, 0 0 40px #ff0033;
+  text-shadow: 0 0 10px #ff0033;
+  animation: blinkGlow 1.2s infinite;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav Bar -->
+  <div class="navbar">
+  <div class="logo-left">
+    <img src="logo.png" alt="ByteMind Logo" class="logo-img">
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#keyfeatures">Key Features</a>
+    <a href="#sessions">Sessions</a>
+    <a href="#grades">Grades</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="logo-right">
+    <img src="logo2.png" alt="DPS Kalinga Logo" class="logo-img">
+  </div>
+</div>
+<!-- Medium ByteMind Logo -->
+<div class="medium-logo">
+  <img src="logo.png" alt="ByteMind Logo" class="center-logo-img">
+</div>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About ByteMind Club</h2>
+    <p>
+      ByteMind isn’t just a tech club—it’s a movement. Born inside DPSK, it’s where students become creators, coders, and demo masters. We believe tech should be <span class="highlight">fun</span>, <span class="highlight">visual</span>, and <span class="highlight">accessible</span> to everyone.
+    </p>
+    <p>
+      From QR scanners to face detection, ByteMind sessions are built to spark curiosity and confidence. No jargon. No gatekeeping. Just pure innovation, live demos, and a community that glows with creativity.
+    </p>
+  </section>
+
+  <!-- Key Features Section -->
+  <section id="keyfeatures">
+    <h2>Key Features</h2>
+    <div class="feature-list">
+      <div class="feature-item">⚡ Live Demos: QR, Color, Face Detection</div>
+      <div class="feature-item">📊 Automated Session Tracking via Google Sheets</div>
+      <div class="feature-item">🧠 Beginner-Friendly Code & Hands-On Activities</div>
+      <div class="feature-item">🌐 Real-Time Web Integration with SheetDB</div>
+      <div class="feature-item">🤝 Inclusive, No-Jargon Learning Environment</div>
+    </div>
+  </section>
+
+  <!-- Sessions Section -->
+  <section id="sessions">
+    <h2>Upcoming & Past Sessions</h2>
+
+    <a href="/session" class="session-button">🔗 View All Sessions</a>
+
+    <div class="neon-warning">! THE DATES MAY CHANGE !</div>
+  </section>
+
+<section id="grades">
+  <h2>🎓 Who Can Join ByteMind?</h2>
+  <p>
+    ByteMind Club currently runs sessions for <span class="highlight">9th Grade</span> students at Delhi Public School Kalinga.
+  </p>
+  <p>
+    We’re actively expanding to include <span class="highlight">6th to 12th Grade</span> students—so whether you're just starting out or already building bots, ByteMind is your launchpad.
+  </p>
+</section>
+
+  <!-- Contact Section -->
+<section id="contact">
+  <h2>📬 Contact Us</h2>
+  <p>Have questions, ideas, or want to join the club?</p>
+  <p>We’d love to hear from you—whether you're a student, teacher, or just curious about tech.</p>
+  <p>Reach out for:</p>
+  <ul style="list-style:none; padding:0; font-size:1.1em; color:#00f7ff;">
+    <li>💡 Collaborations & Demo Requests</li>
+    <li>📅 Event Tech Support</li>
+    <li>🧠 ByteMind Club Membership</li>
+    <li>🎓 School Function Automation</li>
+  </ul>
+  <p>Email Crius directly at:  
+    <a href="mailto:crius@criusbehera.com?subject=Hello!" style="color:#38bdf8; font-weight:bold; text-shadow:0 0 5px #38bdf8;">
+      crius@criusbehera.com
+    </a>
+  </p>
+</section>
+</body>
+</html>
