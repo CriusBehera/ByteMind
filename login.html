@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteMind Club Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
+      animation: gradientShift 15s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-bottom: 2px solid #00f7ff;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5em;
+      color: #00f7ff;
+      text-shadow: 0 0 10px #00f7ff;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00f7ff;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+
+    .auth-section {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00f7ff;
+      text-align: center;
+    }
+
+    .auth-section h2 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #facc15;
+      text-shadow: 0 0 10px #facc15;
+    }
+
+    .auth-section input {
+      width: 95%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .auth-section button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00f7ff;
+      color: #0f172a;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00f7ff;
+      transition: transform 0.2s ease;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+
+    .auth-section button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00f7ff, 0 0 25px #00f7ff;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo-img {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">ByteMind Club</div>
+    <img src="logo.png" alt="ByteMind Logo" class="logo-img" />
+  </div>
+
+  
+
+  <!-- 🔐 Login Section -->
+  <div class="auth-section">
+    <h2>🔐 Login Portal</h2>
+    <form id="emailLoginForm">
+      <input type="email" id="email" placeholder="📧 Email" required />
+      <input type="password" id="password" placeholder="🔑 Password" required />
+      <button type="submit">🚪 Sign In with Email</button>
+    </form>
+    <button onclick="signUpEmail()">🆕 Create Account</button>
+    <button onclick="signInGoogle()">🌐 Sign In with Google</button>
+    <button onclick="resetPassword()">🔁 Forgot Password?</button>
+  </div>
+
+  <!-- 🔥 ByteMind Club Intro -->
+  <div style="max-width: 700px; margin: 40px auto; padding: 20px; background-color: rgba(255,255,255,0.05); border-radius: 12px; box-shadow: 0 0 15px #ff00c8;">
+    <h2 style="color: #ff00c8; text-shadow: 0 0 10px #ff00c8;">🚀 About ByteMind Club</h2>
+    <p style="font-size: 1.1em; line-height: 1.7; color: #e0e0e0;">
+      ByteMind isn’t just a tech club—it’s a <span style="color:#00f7ff; font-weight:bold;">movement</span>. Born inside Delhi Public School Kalinga, it’s where students become creators, coders, and demo masters. We believe tech should be <span style="color:#facc15; font-weight:bold;">fun</span>, <span style="color:#facc15; font-weight:bold;">visual</span>, and <span style="color:#facc15; font-weight:bold;">accessible</span> to everyone.
+    </p>
+    <p style="font-size: 1.1em; line-height: 1.7; color: #e0e0e0;">
+      From QR scanners to face detection, ByteMind sessions are built to spark <span style="color:#00ffae; font-weight:bold;">curiosity</span> and <span style="color:#00ffae; font-weight:bold;">confidence</span>. No jargon. No gatekeeping. Just pure innovation, live demos, and a community that glows with creativity.
+    </p>
+  </div>
+
+  <!-- 📬 Contact Section -->
+  <div style="text-align: center; margin-top: 30px;">
+    <p style="font-size: 1.1em; color: #00f7ff;">
+      📬 Need help or want to join? Contact <a href="mailto:crius@criusbehera.com?subject=Hello!" style="color:#38bdf8; font-weight:bold; text-shadow:0 0 5px #38bdf8;">crius@criusbehera.com</a>
+    </p>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
