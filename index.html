@@ -305,6 +305,42 @@
 
   </style>
 </head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("bytemindUser"));
+
+    if (!user || !user.email) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    // If name is missing, ask again
+    if (!user.name || user.name === "null") {
+      const name = prompt("Hey again! What's your name?");
+      user.name = name?.trim() || user.email;
+      localStorage.setItem("bytemindUser", JSON.stringify(user));
+    }
+
+    // Show name in dropdown
+    const userInfo = document.getElementById("userInfo");
+    if (userInfo) {
+      userInfo.textContent = `👤 ${user.name}`;
+    }
+  });
+
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  function signOut() {
+    localStorage.removeItem("bytemindUser");
+    alert("Signed out successfully.");
+    window.location.href = "login.html";
+  }
+</script>
+
 <body>
 
   <!-- Nav Bar -->
@@ -323,6 +359,24 @@
     <img src="logo2.png" alt="DPS Kalinga Logo" class="logo-img">
   </div>
 </div>
+
+
+<!-- 3-Dot Menu -->
+<!-- User Menu Below Navbar -->
+<div style="display: flex; justify-content: flex-end; padding: 10px 40px;">
+  <div class="menu-dots" onclick="toggleDropdown()" style="cursor: pointer; position: relative;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 6px; height: 6px; background-color: #00f7ff; border-radius: 50%; margin: 3px;"></div>
+      <div style="width: 6px; height: 6px; background-color: #00f7ff; border-radius: 50%; margin: 3px;"></div>
+      <div style="width: 6px; height: 6px; background-color: #00f7ff; border-radius: 50%; margin: 3px;"></div>
+    </div>
+    <div id="dropdownMenu" style="display: none; position: absolute; top: 30px; right: 0; background-color: #1e1e2f; border: 1px solid #00f7ff; border-radius: 8px; box-shadow: 0 0 10px #00f7ff; min-width: 180px; z-index: 1001;">
+      <div id="userInfo" style="padding: 10px; color: #00f7ff; font-weight: bold;"></div>
+      <button onclick="signOut()" style="background: none; border: none; color: #00f7ff; padding: 10px; width: 100%; text-align: left; cursor: pointer; font-weight: bold;">Sign Out</button>
+    </div>
+  </div>
+</div>
+
 <!-- Medium ByteMind Logo -->
 <div class="medium-logo">
   <img src="logo.png" alt="ByteMind Logo" class="center-logo-img">
