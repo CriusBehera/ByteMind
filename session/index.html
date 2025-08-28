@@ -199,6 +199,21 @@
 }
   </style>
 </head>
+
+  <script>
+  (function () {
+    const user = JSON.parse(localStorage.getItem("bytemindUser"));
+
+    // If no valid login data, redirect to ByteMind login page
+    if (!user || !user.email || !user.uid) {
+      window.location.href = "https://bytemindclub.com/login.html";
+    }
+
+    // Optional: log who is accessing
+    console.log("ByteMind user detected:", user.name || user.email);
+  })();
+</script>
+  
 <body>
 
   <h1>📅 ByteMind Sessions</h1>
@@ -277,6 +292,7 @@
 </body>
 
 </html>
+
 
 
 
