@@ -1,4 +1,7 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -6,6 +9,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
+  sendEmailVerification,
+  updateProfile,
   signOut
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
@@ -30,50 +35,62 @@ if (cachedUser && cachedUser.email) {
   window.location.href = "/";
 }
 
-// 🔐 Email Sign-In
+// 🔐 Email Sign-In with Verification Check + Resend
 document.getElementById("emailLoginForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user;
-      const name = prompt("Welcome back! What's your name?");
-      localStorage.setItem("bytemindUser", JSON.stringify({
-        email: user.email,
-        uid: user.uid,
-        name: name?.trim() || user.email
-      }));
-      window.location.href = "/";
+
+      if (user.emailVerified) {
+        const name = user.displayName || user.email;
+        localStorage.setItem("bytemindUser", JSON.stringify({
+          email: user.email,
+          uid: user.uid,
+          name: name
+        }));
+        window.location.href = "/";
+      } else {
+        alert("⚠️ Your email is not verified. Sending a new verification email...");
+        await sendEmailVerification(user);
+        await signOut(auth);
+        alert("📩 Verification email sent to " + email + ". Please check your inbox.");
+      }
     })
     .catch((error) => {
       alert("Login failed: " + error.message);
     });
 });
 
-// 🧠 Email Sign-Up
+// 🧠 Email Sign-Up with Verification + Name Storage
 window.signUpEmail = () => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user;
       const name = prompt("Welcome to ByteMind! What's your name?");
-      localStorage.setItem("bytemindUser", JSON.stringify({
-        email: user.email,
-        uid: user.uid,
-        name: name?.trim() || user.email
-      }));
-      window.location.href = "/";
+
+      if (name) {
+        await updateProfile(user, { displayName: name.trim() });
+      }
+
+      await sendEmailVerification(user);
+      alert("✅ Account created! A verification email has been sent to " + email);
+
+      await signOut(auth); // Block access until verified
+      alert("Please verify your email before logging in.");
     })
     .catch((error) => {
       alert("Sign-up failed: " + error.message);
     });
 };
 
-// 🌐 Google Sign-In
+// 🌐 Google Sign-In (No verification required)
 window.signInGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -124,5 +141,8 @@ window.toggleDropdown = () => {
 // 🎯 Scroll to Form
 window.scrollToForm = () => {
   document.getElementById("email").focus();
-  window.scrollTo({ top: document.getElementById("emailLoginForm").offsetTop, behavior: "smooth" });
+  window.scrollTo({
+    top: document.getElementById("emailLoginForm").offsetTop,
+    behavior: "smooth"
+  });
 };
