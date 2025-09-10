@@ -57,7 +57,7 @@ document.getElementById("emailLoginForm").addEventListener("submit", (e) => {
         alert("⚠️ Your email is not verified. Sending a new verification email...");
         await sendEmailVerification(user);
         await signOut(auth);
-        alert("📩 Verification email sent to " + email + ". Please check your inbox. \n⚠️ If you have not recived the mail please wait at least 24hrs and then try again.");
+        alert("📩 Verification email sent to " + email + ". Please check your inbox. \n⚠️ If you have not recived the mail please wait at least 24hrs and then try again.\nAlso Check Your Spam Folder.");
       }
     })
     .catch((error) => {
@@ -83,7 +83,7 @@ window.signUpEmail = () => {
       alert("✅ Account created! A verification email has been sent to " + email);
 
       await signOut(auth); // Block access until verified
-      alert("Please verify your email before logging in. \n⚠️ If you have not recived the mail please wait at least 24hrs and then try again.");
+      alert("Please verify your email before logging in. \n⚠️ If you have not recived the mail please wait at least 24hrs and then try again.\nAlso Check Your Spam Folder.");
     })
     .catch((error) => {
       alert("Sign-up failed: " + error.message);
